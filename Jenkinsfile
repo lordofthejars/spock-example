@@ -1,8 +1,10 @@
 stage 'Dev'
 
-node {
-        git url:'https://github.com/lordofthejars/spock-example.git'
-        sh "./gradlew clean build"
+node('linux') {
+        docker.image('java:8').inside {
+            git url:'https://github.com/lordofthejars/spock-example.git'
+            sh "./gradlew clean build"
+        }
 }
 
 stage 'QA'
